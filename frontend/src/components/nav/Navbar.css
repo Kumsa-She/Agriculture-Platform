@@ -1,0 +1,197 @@
+.custom-navbar {
+  background: linear-gradient(to bottom, #5c9960, #99ffa0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+}
+
+.container {
+  border-radius: 1.5rem;
+  border: 1px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 1247px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  height: 30px;
+  width: auto;
+  padding-left: 10px;
+}
+
+.navbar-search-input {
+  color: #fff;
+  border-radius: 20px;
+  border: 0.1px solid white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px;
+  background: inherit;
+  padding-left: 20px;
+  width: 432px;
+  transition: all 0.3s ease;
+}
+
+.navbar-search-input:focus {
+  border-radius: 20px;
+  background: inherit;
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.small-search .navbar-search-input {
+  width: 100%;
+}
+
+.link-small-screen {
+  color: #1d2b36;
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none !important;
+}
+
+.link-small-screen:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  color: #1d2b36;
+}
+
+.legular_navigation {
+  color: #1d2b36;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.legular_navigation:hover {
+  color: #1d2b36;
+  opacity: 0.8;
+}
+
+.profile {
+  color: #1d2b36;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+/* Close button styles */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  color: #1d2b36;
+  font-size: 1.5rem;
+  z-index: 1051;
+  padding: 10px 14px;
+  margin-right: -8rem;
+  background-color: #5c9960;
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+  color: #fff;
+  background-color: #99ffa0;
+}
+
+.navbar-toggler {
+  display: none;
+}
+
+/* Style for our custom mobile menu trigger */
+.mobile-menu-trigger {
+  color: #1d2b36;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+  color: #fff !important;
+  background: transparent !important;
+}
+/* Mobile menu styles */
+@media (max-width: 991.98px) {
+  .collapse-style {
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 60%;
+    background: linear-gradient(to bottom, #5c9960, #99ffa0);
+    z-index: 1050;
+    flex-direction: column;
+    padding: 10px 20px 20px;
+    margin: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .collapse-style.show {
+    display: flex !important;
+  }
+
+  .link {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .margin {
+    margin-right: 8rem !important;
+  }
+
+  .navbar-search-form {
+    width: 100%;
+    margin: 15px 0;
+  }
+  .close-btn {
+    padding: 8px 12px;
+    margin-right: -4.8rem;
+  }
+
+  .close-btn:hover {
+    color: #fff !important;
+    background-color: #99ffa0;
+  }
+  .container {
+    margin: auto 2.5rem;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 992px) {
+  .me-auto {
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 1025px) {
+  .profile {
+    display: none !important;
+  }
+}
+
+/* Additional styles for Link components */
+a.text-decoration-none {
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+a.text-decoration-none:hover {
+  text-decoration: none !important;
+  transform: translateY(-1px);
+}

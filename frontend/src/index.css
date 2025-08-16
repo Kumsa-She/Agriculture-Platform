@@ -1,3 +1,14 @@
 :root {
-  background-color: #242424;
+  --primary-color: #3a993a;
+  --secondary-color: #60ff60;
+  --dark-green: #5c9960;
+  --light-green: #99ffa0;
+  --main-background: #f9f4ec;
+  --second-background: #f5e8d2;
+  --default-white-color: #fff;
+  --default-black-color: #000;
+}
+body {
+  background-color: var(--main-background);
+  color: var(--default-black-color);
 }
