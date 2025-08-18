@@ -20,6 +20,7 @@ const Navbar = () => {
     <BootstrapNavbar
       className="custom-navbar"
       variant="dark"
+      bg="dark"
       expand="lg"
       expanded={expanded}
       onToggle={(isExpanded) => setExpanded(isExpanded)}
@@ -64,7 +65,7 @@ const Navbar = () => {
 
           <div className="me-auto d-flex align-items-center gap-5 pl-5">
             <Form
-              inline
+              as="form"
               className="my-2 my-lg-0 d-none d-lg-flex navbar-search-form"
             >
               <FormControl
@@ -117,7 +118,7 @@ const Navbar = () => {
                   <i className="fa-solid fa-headset"></i> Support
                 </span>
               </Nav.Link>
-              <Form inline className="py-2 small-search">
+              <Form as="form" className="py-2 small-search">
                 <FormControl
                   type="text"
                   placeholder="Search..."
@@ -160,7 +161,11 @@ const Navbar = () => {
 
           <div className="link right">
             <div className="d-flex align-items-center gap-2">
-              <Link to="/settings" className="text-decoration-none">
+              <Link
+                to="/settings"
+                onClick={() => setExpanded(false)}
+                className="text-decoration-none"
+              >
                 <span
                   role="img"
                   aria-label="settings"
@@ -169,7 +174,11 @@ const Navbar = () => {
                   <i className="fa-solid fa-gear"></i>
                 </span>
               </Link>
-              <Link to="/profile" className="d-md-block text-decoration-none">
+              <Link
+                to="/profile"
+                onClick={() => setExpanded(false)}
+                className="d-md-block text-decoration-none"
+              >
                 <span
                   role="img"
                   aria-label="profile"
@@ -179,7 +188,11 @@ const Navbar = () => {
                 </span>
                 <span className="d-none d-md-inline profile">Name</span>
               </Link>
-              <Link to="/pricing" className="d-md-block text-decoration-none">
+              <Link
+                to="/pricing"
+                onClick={() => setExpanded(false)}
+                className="d-md-block text-decoration-none"
+              >
                 <span
                   role="img"
                   aria-label="globe"

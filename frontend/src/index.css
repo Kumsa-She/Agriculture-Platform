@@ -8,7 +8,39 @@
   --default-white-color: #fff;
   --default-black-color: #000;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
 body {
-  background-color: var(--main-background);
-  color: var(--default-black-color);
+  width: 100%;
+  overflow-x: hidden; /* Only prevent horizontal scroll */
+  scroll-behavior: smooth;
+}
+/* Custom thin scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Vertical scrollbar width */
+  height: 8px; /* Horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5c9960; /* Thumb color using your green */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #99ffa0; /* Hover color using your light green */
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5c9960 #f1f1f1;
 }

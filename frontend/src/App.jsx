@@ -11,11 +11,15 @@ import {
   Profile,
 } from './pages/index.js';
 
+import Nav from './Nav.jsx';
+import Footer from './components/footer/Footer.jsx';
+
 function App() {
   return (
     <>
       <Navbar />
-      <main className="container mt-4">
+
+      <main>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
@@ -26,6 +30,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
+        <Footer />
       </main>
     </>
   );
