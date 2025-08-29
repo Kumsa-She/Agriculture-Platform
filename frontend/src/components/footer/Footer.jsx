@@ -1,122 +1,66 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { FaInfoCircle, FaCookieBite } from 'react-icons/fa';
-import Logo from '../../assets/farmer.png';
 import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className=" text-dark color-text-5 pb-3 footer-container">
-      <Container fluid>
-        <Row className="g-5">
-          {/* Brand Column with Logo */}
-          <Col lg={4} md={12} className="mb-4">
-            <div className="d-flex align-items-center">
-              <img
-                src={Logo}
-                alt="Farmer Support Platform Logo"
-                className="footer-logo"
-              />
-              <div>
-                <h3 className=" fw-bold mb-1 h-farm-footer">
-                  Farmer Support Platform
-                </h3>
-                <p className="mb-0 color-text">
-                  Empowering Ethiopian agriculture through technology
-                </p>
-              </div>
-            </div>
-          </Col>
-
-          {/* Platform Links Column */}
-          <Col lg={2} md={3} sm={6} className="mb-4">
-            <div className="px-md-5">
-              <h4 className="footer_header fw-bold mb-3">Platform</h4>
-              <ul className="list-unstyled">
-                <li className="mb-2">
-                  <a href="#" className="color-text text-decoration-none">
-                    Features
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="#" className="color-text text-decoration-none">
-                    Sign In
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="color-text text-decoration-none">
-                    Get Started
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </Col>
-
-          {/* Support Links Column */}
-          <Col lg={2} md={6} sm={6} className="mb-4">
-            <div className="px-md-5">
-              <h4 className="footer_header fw-bold mb-3">Support</h4>
-              <ul className="list-unstyled ">
-                <li className="mb-2 ">
-                  <a href="#" className="text-decoration-none color-text">
-                    Help Center
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="#" className="text-decoration-none color-text">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-decoration-none color-text">
-                    Community
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </Col>
-
-          {/* Legal Links Column */}
-          <Col lg={4} md={12} className="mb-4">
-            <div className="px-md-5">
-              <h4 className="footer_header fw-bold mb-3">Legal</h4>
-              <ul className="list-unstyled ">
-                <li className="mb-2 d-flex align-items-center">
-                  <FaInfoCircle className="me-2 text-muted" />
-                  <a href="#" className="text-decoration-none color-text">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li className="mb-2 d-flex align-items-center">
-                  <FaInfoCircle className="me-2 text-muted" />
-                  <a href="#" className="text-decoration-none color-text">
-                    Terms of Service
-                  </a>
-                </li>
-                <li className="d-flex align-items-center">
-                  <FaCookieBite className="me-2 text-muted" />
-                  <a href="#" className="text-decoration-none color-text">
-                    Cookie Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </Col>
-        </Row>
-
-        <hr
-          className="bg-secondary my-3"
-          style={{ backgroundColor: '#605D5D' }}
-        />
-
-        <Row>
-          <Col className="text-center">
-            <p className="mb-0 color-text">
-              © 2025 Farmer Support Platform. All rights reserved.
-            </p>
-          </Col>
-        </Row>
-      </Container>
+    <footer className="footer">
+      <div className="container footer-container">
+        <div className="footer-section">
+          <h3>AgriConnect</h3>
+          <p>
+            Empowering farmers with technology for better yields and market
+            access.
+          </p>
+          <div className="social-links">
+            <a href="#">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-telegram"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        <div className="footer-section">
+          <h3>Quick Links</h3>
+          <ul className="footer-links">
+            <li>
+              <a href="#">About Us</a>
+            </li>
+            <li>
+              <a href="#">Services</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+            <li>
+              <a href="#">FAQs</a>
+            </li>
+          </ul>
+        </div>
+        <div className="footer-section">
+          <h3>Contact Us</h3>
+          <ul className="footer-links">
+            <li>
+              <i className="fas fa-phone"></i> +251 911 234 567
+            </li>
+            <li>
+              <i className="fas fa-envelope"></i> info@agriconnect.et
+            </li>
+            <li>
+              <i className="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="container copyright">
+        <p>&copy; 2025 AgriConnect. All rights reserved.</p>
+      </div>
     </footer>
   );
 };

@@ -1,46 +1,76 @@
+/* Base Styles & Variables */
 :root {
-  --primary-color: #3a993a;
-  --secondary-color: #60ff60;
-  --dark-green: #5c9960;
-  --light-green: #99ffa0;
-  --main-background: #f9f4ec;
-  --second-background: #f5e8d2;
-  --default-white-color: #fff;
-  --default-black-color: #000;
+  --primary: #2ecc71;
+  --primary-dark: #27ae60;
+  --secondary: #3498db;
+  --accent: #f39c12;
+  --light: #f7fff7;
+  --dark: #1a3c34;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --gradient-weather: linear-gradient(135deg, #2ecc71, #3498db);
+  --gradient-2-weather: linear-gradient(135deg, #f39c12, #e74c3c);
+
+  --primary-green: #2ecc71;
+  --light-green: #27ae60;
+  --dark-green: #219653;
+  --accent-orange: #f39c12;
+  --light-bg: #f7fff7;
+  --cream: #fef9e7;
+  --white: #ffffff;
+  --text-dark: #1a3c34;
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --border-radius: 16px;
+  --gradient: linear-gradient(135deg, var(--primary-green), var(--light-green));
+
+  --gradient_2: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--secondary-green) 100%
+  );
+  --light-cream: #fff8e7;
+  --pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 0l20 20L40 0H0zm0 40l20-20L40 40H0z'/%3E%3C/g%3E%3C/svg%3E");
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-
-html,
 body {
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+  line-height: 1.7;
+  font-size: 16px;
+}
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--dark-green);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+p {
+  margin-bottom: 1.2rem;
+  color: var(--text-dark);
+}
+/* Layout Components */
+.container {
   width: 100%;
-  overflow-x: hidden; /* Only prevent horizontal scroll */
-  scroll-behavior: smooth;
-}
-/* Custom thin scrollbar */
-::-webkit-scrollbar {
-  width: 8px; /* Vertical scrollbar width */
-  height: 8px; /* Horizontal scrollbar height */
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #5c9960; /* Thumb color using your green */
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #99ffa0; /* Hover color using your light green */
-}
-
-/* Firefox support */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #5c9960 #f1f1f1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
