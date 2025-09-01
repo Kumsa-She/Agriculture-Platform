@@ -387,7 +387,6 @@ p {
   overflow: hidden;
   margin-top: 0.5rem;
 }
-
 .dropdown-content a {
   color: var(--text-dark);
   padding: 1rem 1.5rem;
