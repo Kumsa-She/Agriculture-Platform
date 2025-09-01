@@ -6,4 +6,15 @@ import Setting from './setting/Setting';
 import Pricing from './pricing/Pricing';
 import Profile from './profile/Profile';
 import Login from './Login/Login';
-export { Home, Pricing, Profile, Shop, Support, Weather, Setting, Login };
+import Register from './Register/Register';
+export {
+  Home,
+  Pricing,
+  Profile,
+  Shop,
+  Support,
+  Weather,
+  Setting,
+  Login,
+  Register,
+};

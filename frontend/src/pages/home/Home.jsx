@@ -1,22 +1,93 @@
 import React from 'react';
+import { useState } from 'react';
 import './Home.css';
+import Slider from 'react-slick';
+import img_hero1 from '../../assets/h.jpg';
+import img_hero2 from '../../assets/her.jpg'; // Replace with your actual image path
+import img_hero3 from '../../assets/he.jpg';
 
 function Home() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    adaptiveHeight: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+
+  // Use the imported images
+  const images = [img_hero1, img_hero2, img_hero3];
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} custom-arrow`}
+        style={{ ...style }}
+        onClick={onClick}
+      >
+        <span>
+          <i className="fa-solid fa-arrow-right"></i>
+        </span>
+      </div>
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} custom-arrow`}
+        style={{ ...style }}
+        onClick={onClick}
+      >
+        <span>
+          <i className="fa-solid fa-arrow-left"></i>
+        </span>
+      </div>
+    );
+  }
+
   return (
     <>
       <section className="hero">
-        <div class="container hero-content">
-          <h1>Empowering Farmers with Technology</h1>
-          <p>
-            Access real-time weather data, market prices, agricultural experts,
-            and marketplace all in one platform designed for Ethiopian farmers.
-          </p>
-          <div class="hero-buttons">
-            <a href="#" class="btn btn-outline">
-              <i class="fas fa-info-circle"></i> Learn More
-            </a>
-          </div>
-        </div>
+        <Slider {...settings} className="hero-slider">
+          {images.map((img, i) => (
+            <div
+              key={i}
+              className="hero-slide"
+              style={{ backgroundImage: `url(${img})` }}
+            >
+              <div className="hero-overlay">
+                <div className="container hero-content">
+                  <h1>Empowering Farmers with Technology</h1>
+                  <p>
+                    Access real-time weather data, market prices, agricultural
+                    experts, and marketplace all in one platform designed for
+                    Ethiopian farmers.
+                  </p>
+                  <div className="hero-buttons">
+                    <a href="#" className="btn btn-outline">
+                      <i className="fas fa-info-circle"></i> Learn More
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </section>
 
       <section className="features">
@@ -171,10 +242,14 @@ function Home() {
             <p>Find answers to common questions about AgriConnect</p>
           </div>
           <div className="faq-list">
-            <div className="faq-item">
-              <div className="faq-question">
+            <div className={`faq-item ${openIndex === 0 ? 'active' : ''}`}>
+              <div className="faq-question" onClick={() => toggleFAQ(0)}>
                 <span>Is AgriConnect free to use?</span>
-                <i className="fas fa-chevron-down"></i>
+                <i
+                  className={`fas ${
+                    openIndex === 0 ? 'fa-chevron-up' : 'fa-chevron-down'
+                  }`}
+                ></i>
               </div>
               <div className="faq-answer">
                 <p>
@@ -184,10 +259,14 @@ function Home() {
                 </p>
               </div>
             </div>
-            <div className="faq-item">
-              <div className="faq-question">
+            <div className={`faq-item ${openIndex === 1 ? 'active' : ''}`}>
+              <div className="faq-question" onClick={() => toggleFAQ(1)}>
                 <span>Do I need internet access to use AgriConnect?</span>
-                <i className="fas fa-chevron-down"></i>
+                <i
+                  className={`fas ${
+                    openIndex === 1 ? 'fa-chevron-up' : 'fa-chevron-down'
+                  }`}
+                ></i>
               </div>
               <div className="faq-answer">
                 <p>
@@ -197,10 +276,14 @@ function Home() {
                 </p>
               </div>
             </div>
-            <div className="faq-item">
-              <div className="faq-question">
+            <div className={`faq-item ${openIndex === 2 ? 'active' : ''}`}>
+              <div className="faq-question" onClick={() => toggleFAQ(2)}>
                 <span>How often is market price data updated?</span>
-                <i className="fas fa-chevron-down"></i>
+                <i
+                  className={`fas ${
+                    openIndex === 2 ? 'fa-chevron-up' : 'fa-chevron-down'
+                  }`}
+                ></i>
               </div>
               <div className="faq-answer">
                 <p>
@@ -210,10 +293,14 @@ function Home() {
                 </p>
               </div>
             </div>
-            <div className="faq-item">
-              <div className="faq-question">
+            <div className={`faq-item ${openIndex === 3 ? 'active' : ''}`}>
+              <div className="faq-question" onClick={() => toggleFAQ(3)}>
                 <span>Can I use AgriConnect in my local language?</span>
-                <i className="fas fa-chevron-down"></i>
+                <i
+                  className={`fas ${
+                    openIndex === 3 ? 'fa-chevron-up' : 'fa-chevron-down'
+                  }`}
+                ></i>
               </div>
               <div className="faq-answer">
                 <p>

@@ -4,10 +4,12 @@ import './Navbar.css';
 
 function PrivateNavbar({ onLogout, user }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
     onLogout();
     setIsDropdownOpen(false);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -15,41 +17,63 @@ function PrivateNavbar({ onLogout, user }) {
       <nav className="navbar">
         <div className="container nav-container">
           <div className="logo">
-            <i className="fas fa-leaf text-white"></i>
+            <i className="fas fa-leaf text-white logo-icon"></i>
             <span>AgriConnect</span>
           </div>
-          <ul className="nav-menu">
+
+          {/* Nav Menu */}
+          <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
             <li className="nav-item">
-              <Link to="/home" className="nav-link">
+              <Link
+                to="/home"
+                className="nav-link"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <i className="fas fa-home"></i>
                 <span>Home</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/weather" className="nav-link">
+              <Link
+                to="/weather"
+                className="nav-link"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <i className="fas fa-cloud-sun"></i>
                 <span>Weather</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/pricing" className="nav-link">
+              <Link
+                to="/pricing"
+                className="nav-link"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <i className="fas fa-tags"></i>
                 <span>Prices</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/support" className="nav-link">
+              <Link
+                to="/support"
+                className="nav-link"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <i className="fas fa-user-graduate"></i>
                 <span>Experts</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/shop" className="nav-link">
+              <Link
+                to="/shop"
+                className="nav-link"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <i className="fas fa-store"></i>
                 <span>Marketplace</span>
               </Link>
             </li>
-            <li className="nav-item language-item">
+            <li className="nav-item nav-language">
               <select className="language-toggle" id="languageToggle">
                 <option value="en">English</option>
                 <option value="am">Amharic</option>
@@ -69,11 +93,11 @@ function PrivateNavbar({ onLogout, user }) {
                 <i className="fas fa-user-circle"></i>
               </button>
               <div className="dropdown-content">
-                <Link to="/profile">
+                <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
                   <i className="fas fa-user"></i>
                   <span>My Profile</span>
                 </Link>
-                <Link to="/settings">
+                <Link to="/settings" onClick={() => setIsMenuOpen(false)}>
                   <i className="fas fa-cog"></i>
                   <span>Notifications</span>
                 </Link>
@@ -92,8 +116,10 @@ function PrivateNavbar({ onLogout, user }) {
               </div>
             </li>
           </ul>
-          <div className="hamburger">
-            <i className="fas fa-bars"></i>
+
+          {/* Hamburger */}
+          <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
           </div>
         </div>
       </nav>
