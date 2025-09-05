@@ -63,6 +63,7 @@ export const createExpert = async (req, res) => {
       desc,
       education,
       language,
+      status,
     } = req.body;
 
     // Check if expert already exists
@@ -88,6 +89,7 @@ export const createExpert = async (req, res) => {
       desc,
       education,
       language,
+      status,
     });
 
     // Remove password from response

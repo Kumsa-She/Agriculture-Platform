@@ -1,8 +1,9 @@
+// services/api.js
 import axios from 'axios';
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: 'http://localhost:5000/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -31,13 +32,11 @@ api.interceptors.response.use(
   },
   (error) => {
     console.error('Response error:', error.response?.data || error.message);
-
     if (error.response?.status === 401) {
       // Clear local storage and redirect to login
       localStorage.removeItem('currentUser');
       window.location.href = '/login';
     }
-
     return Promise.reject(error);
   }
 );
@@ -45,6 +44,7 @@ api.interceptors.response.use(
 // Auth API calls
 export const authAPI = {
   login: (credentials) => api.post('/auth/login', credentials),
+  expertLogin: (credentials) => api.post('/auth/expert-login', credentials), // Make sure this exists
   register: (userData) => api.post('/auth/register', userData),
   getMe: (userId) => api.post('/auth/me', { userId }),
 };

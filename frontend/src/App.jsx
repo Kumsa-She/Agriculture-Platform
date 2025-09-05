@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
-import { PrivateNavbar, PublicNavbar } from './components/index.js';
+import {
+  PrivateNavbar,
+  PublicNavbar,
+  ExpertNavbar,
+} from './components/index.js';
 import {
   Home,
   Weather,
@@ -11,7 +15,11 @@ import {
   Pricing,
   Profile,
   Login,
-  Register, // Make sure this is imported
+  Register,
+  Book,
+  Chat,
+  ExpertDashboard,
+  ExpertChat, // ADD THIS IMPORT
 } from './pages/index.js';
 import Footer from './components/footer/Footer.jsx';
 import { authAPI } from './services/api';
@@ -30,9 +38,17 @@ function App() {
       if (savedUser) {
         const user = JSON.parse(savedUser);
         try {
-          const response = await authAPI.getMe(user._id);
-          setCurrentUser(response.data.user);
-          setIsAuthenticated(true);
+          // Check if it's a regular user or expert
+          if (user.type === 'expert') {
+            // For experts, we don't need to verify with backend on every load
+            setCurrentUser(user);
+            setIsAuthenticated(true);
+          } else {
+            // For regular users, verify with backend
+            const response = await authAPI.getMe(user._id);
+            setCurrentUser({ ...response.data.user, type: 'user' });
+            setIsAuthenticated(true);
+          }
           setError('');
         } catch (error) {
           console.error('Auth check failed:', error);
@@ -48,18 +64,50 @@ function App() {
     checkAuth();
   }, []);
 
-  // Login function
+  // Login function - updated to check both users and experts
   const login = async (email, password) => {
     try {
       setError('');
-      const response = await authAPI.login({ email, password });
-      const { user } = response.data;
 
-      setIsAuthenticated(true);
-      setCurrentUser(user);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      navigate('/home');
-      return true;
+      // First try regular user login
+      try {
+        const response = await authAPI.login({ email, password });
+        const { user } = response.data;
+
+        setIsAuthenticated(true);
+        setCurrentUser({ ...user, type: 'user' });
+        localStorage.setItem(
+          'currentUser',
+          JSON.stringify({ ...user, type: 'user' })
+        );
+
+        navigate('/home');
+        return true;
+      } catch (userError) {
+        // If user login fails, try expert login
+        try {
+          const expertResponse = await authAPI.expertLogin({ email, password });
+          const { expert } = expertResponse.data;
+
+          setIsAuthenticated(true);
+          setCurrentUser({ ...expert, type: 'expert' });
+          localStorage.setItem(
+            'currentUser',
+            JSON.stringify({ ...expert, type: 'expert' })
+          );
+
+          navigate('/expert-dashboard');
+          return true;
+        } catch (expertError) {
+          // Both logins failed
+          const errorMessage =
+            expertError.response?.data?.message ||
+            userError.response?.data?.message ||
+            'Login failed. Please try again.';
+          setError(errorMessage);
+          return false;
+        }
+      }
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || 'Login failed. Please try again.';
@@ -74,10 +122,12 @@ function App() {
       setError('');
       const response = await authAPI.register(userData);
       const { user } = response.data;
-
       setIsAuthenticated(true);
-      setCurrentUser(user);
-      localStorage.setItem('currentUser', JSON.stringify(user));
+      setCurrentUser({ ...user, type: 'user' });
+      localStorage.setItem(
+        'currentUser',
+        JSON.stringify({ ...user, type: 'user' })
+      );
       navigate('/home');
       return true;
     } catch (error) {
@@ -122,11 +172,15 @@ function App() {
 
       {/* Conditionally render the appropriate navbar */}
       {isAuthenticated ? (
-        <PrivateNavbar onLogout={logout} user={currentUser} />
+        currentUser?.type === 'expert' ? (
+          <ExpertNavbar onLogout={logout} user={currentUser} />
+        ) : (
+          <PrivateNavbar onLogout={logout} user={currentUser} />
+        )
       ) : (
         <PublicNavbar
           onLogin={() => navigate('/login')}
-          onRegister={() => navigate('/register')} // 👈 This will navigate to register page
+          onRegister={() => navigate('/register')}
         />
       )}
 
@@ -152,6 +206,10 @@ function App() {
           />
           <Route path="/support" element={<Support />} />
 
+          {/* Add Book and Chat routes */}
+          <Route path="/book" element={<Book />} />
+          <Route path="/chat" element={<Chat />} />
+
           {/* Login Route */}
           <Route
             path="/login"
@@ -160,7 +218,7 @@ function App() {
             }
           />
 
-          {/* Register Route - ONLY THIS ONE */}
+          {/* Register Route */}
           <Route
             path="/register"
             element={
@@ -180,6 +238,21 @@ function App() {
                 element={<Setting user={currentUser} />}
               />
               <Route path="/profile" element={<Profile user={currentUser} />} />
+
+              {/* Expert Dashboard Route - only for experts */}
+              {currentUser?.type === 'expert' && (
+                <>
+                  <Route
+                    path="/expert-dashboard"
+                    element={<ExpertDashboard user={currentUser} />}
+                  />
+                  {/* ADD THE EXPERT CHAT ROUTE HERE */}
+                  <Route
+                    path="/expert/chat/:userId"
+                    element={<ExpertChat user={currentUser} />}
+                  />
+                </>
+              )}
             </>
           ) : (
             <>
@@ -189,6 +262,15 @@ function App() {
               />
               <Route
                 path="/profile"
+                element={<Navigate to="/login" replace />}
+              />
+              <Route
+                path="/expert-dashboard"
+                element={<Navigate to="/login" replace />}
+              />
+              {/* PROTECT THE EXPERT CHAT ROUTE TOO */}
+              <Route
+                path="/expert/chat/:userId"
                 element={<Navigate to="/login" replace />}
               />
             </>

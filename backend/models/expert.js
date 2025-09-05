@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const expertSchema = new mongoose.Schema(
   {
-    // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    // REMOVE the _id field definition
     name: {
       type: String,
       required: [true, 'Name is required'],
@@ -41,21 +41,26 @@ const expertSchema = new mongoose.Schema(
     },
     education: {
       type: String,
-      required: [true, 'Status is required'],
+      required: [true, 'Education is required'],
       trim: true,
     },
-
     language: {
       type: String,
       required: [true, 'Language is required'],
       trim: true,
     },
+    status: {
+      type: String,
+      required: [true, 'Status is required'],
+      trim: true,
+      default: 'online',
+    },
   },
-
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
     timestamps: true,
+    // REMOVE _id: false - let MongoDB handle _id automatically
   }
 );
 

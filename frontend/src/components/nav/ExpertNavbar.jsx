@@ -55,7 +55,7 @@ function PrivateNavbar({ onLogout, user }) {
             </li>
             <li className="nav-item">
               <Link
-                to="/support"
+                to="/expert-dashboard"
                 className="nav-link"
                 onClick={() => setIsMenuOpen(false)}
               >

@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema(
   {
+    // REMOVE the _id field definition
     name: {
       type: String,
       required: [true, 'Name is required'],
@@ -33,6 +34,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    // REMOVE _id: false - let MongoDB handle _id automatically
   }
 );
 

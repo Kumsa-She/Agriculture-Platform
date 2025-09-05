@@ -4,8 +4,8 @@ import './Register.css'; // We'll create this CSS file
 
 function Register({ onRegister }) {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
+    phone: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -40,7 +40,16 @@ function Register({ onRegister }) {
     setLoading(true);
 
     try {
-      const success = await onRegister(formData);
+      // Prepare data to send to backend
+      const userData = {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        password: formData.password,
+        userType: formData.userType,
+      };
+
+      const success = await onRegister(userData);
       if (success) {
         navigate('/dashboard'); // Redirect after successful registration
       }
@@ -63,34 +72,31 @@ function Register({ onRegister }) {
         <form onSubmit={handleSubmit} className="register-form">
           {error && <div className="error-message">{error}</div>}
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-                placeholder="Enter your first name"
-                disabled={loading}
-              />
-            </div>
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder="Enter your full name"
+              disabled={loading}
+            />
+          </div>
 
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-                placeholder="Enter your last name"
-                disabled={loading}
-              />
-            </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+              disabled={loading}
+            />
           </div>
 
           <div className="form-group">

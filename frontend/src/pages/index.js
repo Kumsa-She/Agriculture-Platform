@@ -7,6 +7,10 @@ import Pricing from './pricing/Pricing';
 import Profile from './profile/Profile';
 import Login from './Login/Login';
 import Register from './Register/Register';
+import Book from './book/Book';
+import Chat from './chat/Chat';
+import ExpertDashboard from './experts/ExpertDashboard';
+import ExpertChat from './chat/ExpertChat';
 export {
   Home,
   Pricing,
@@ -17,4 +21,8 @@ export {
   Setting,
   Login,
   Register,
+  Book,
+  Chat,
+  ExpertDashboard,
+  ExpertChat,
 };
