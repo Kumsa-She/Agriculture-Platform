@@ -8,7 +8,9 @@ import connectDB from './config/database.js';
 import authRoutes from './routes/auth.js';
 import expertRouter from './routes/expert.js';
 import chatRoutes from './routes/chat.js'; // Import chat routes
-import notificationRoutes from './routes/notifications.js'; // Import notification routes
+
+import messageRoutes from './routes/chat.js'; // Add this import
+import notificationRoutes from './routes/notifications.js'; // Add this import
 
 dotenv.config();
 
@@ -44,6 +46,8 @@ app.use('/api/support', expertRouter);
 app.use('/api/experts', expertRouter);
 app.use('/api/chat', chatRoutes); // Add chat routes
 app.use('/api/notifications', notificationRoutes); // Add notification routes
+app.use('/api/messages', messageRoutes); // Add this line
+app.use('/api/notifications', notificationRoutes); // Add this line
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

@@ -140,7 +140,7 @@ const getUserById = async (req, res) => {
     }
 
     // Find user by ID and exclude password
-    const user = await User.findById(id).select('-password');
+    const user = await user.findById(id).select('-password');
 
     if (!user) {
       return res.status(404).json({

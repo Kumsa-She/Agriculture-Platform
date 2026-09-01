@@ -62,8 +62,8 @@ function Register({ onRegister }) {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
+    <div className="register-container ">
+      <div className="register-card ">
         <div className="register-header">
           <h2>Create Your AgriConnect Account</h2>
           <p>Join our agricultural community today</p>
@@ -71,64 +71,61 @@ function Register({ onRegister }) {
 
         <form onSubmit={handleSubmit} className="register-form">
           {error && <div className="error-message">{error}</div>}
-
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="Enter your full name"
-              disabled={loading}
-            />
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Enter your full name"
+                disabled={loading}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                disabled={loading}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Enter your email"
+                disabled={loading}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="userType">I am a</label>
+              <select
+                id="userType"
+                name="userType"
+                value={formData.userType}
+                onChange={handleChange}
+                disabled={loading}
+              >
+                <option value="farmer">Farmer</option>
+                <option value="buyer">Buyer</option>
+                <option value="distributor">Distributor</option>
+                <option value="expert">Agricultural Expert</option>
+              </select>
+            </div>
           </div>
-
-          <div className="form-group">
-            <label htmlFor="phone">Phone Number</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              disabled={loading}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="Enter your email"
-              disabled={loading}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="userType">I am a</label>
-            <select
-              id="userType"
-              name="userType"
-              value={formData.userType}
-              onChange={handleChange}
-              disabled={loading}
-            >
-              <option value="farmer">Farmer</option>
-              <option value="buyer">Buyer</option>
-              <option value="distributor">Distributor</option>
-              <option value="expert">Agricultural Expert</option>
-            </select>
-          </div>
-
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="password">Password</label>
@@ -160,7 +157,6 @@ function Register({ onRegister }) {
               />
             </div>
           </div>
-
           <button type="submit" className="register-btn" disabled={loading}>
             {loading ? 'Creating Account...' : 'Create Account'}
           </button>
